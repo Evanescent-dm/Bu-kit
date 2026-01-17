@@ -8,7 +8,7 @@
 ![License](https://img.shields.io/badge/license-MIT-green.svg)
 ![Chrome](https://img.shields.io/badge/chrome-extension-orange.svg)
 
-**一款轻量级的 Chrome HTTP 请求监控与调试工具**
+**Chrome浏览器插件 ｜ 一款轻量级的 Chrome HTTP 请求监控与调试工具**
 
 **A lightweight Chrome HTTP request monitoring and debugging tool**
 
