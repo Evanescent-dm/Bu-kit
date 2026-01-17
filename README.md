@@ -139,7 +139,7 @@ Bu-kit/
 #### HTTP History（请求历史）
 
 - ✅ 按标签页独立存储请求历史
-- ✅ 支持最多 100 条请求记录（可配置）
+- ✅ 支持最多 1000 条请求记录（可配置）
 - ✅ 实时更新请求状态（pending → completed/failed）
 
 #### 过滤与搜索
@@ -324,7 +324,7 @@ Bu-kit/
 #### HTTP History
 
 - ✅ Store request history independently per tab
-- ✅ Support up to 100 request records (configurable)
+- ✅ Support up to 1000 request records (configurable)
 - ✅ Real-time update request status (pending → completed/failed)
 
 #### Filtering and Search
