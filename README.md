@@ -175,10 +175,6 @@ Bu-kit/
    - 关闭标签页后数据自动清除
    - 响应体大小限制为 5MB，超出部分会被截断
 
-4. **浏览器限制**
-   - Repeater 功能基于 `fetch` API 实现
-   - 某些受限 Header（如 `Host`、`Origin`）可能被浏览器忽略
-   - 跨域请求受 CORS 策略限制
 
 ### 🛣️ 后续规划
 
@@ -360,10 +356,6 @@ Bu-kit/
    - Data is automatically cleared when the tab is closed
    - Response body size is limited to 5MB, excess will be truncated
 
-4. **Browser Limitations**
-   - Repeater function is implemented based on `fetch` API
-   - Some restricted headers (e.g., `Host`, `Origin`) may be ignored by the browser
-   - Cross-origin requests are subject to CORS policy restrictions
 
 ### 🛣️ Roadmap
 
