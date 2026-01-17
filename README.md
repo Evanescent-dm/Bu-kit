@@ -10,7 +10,7 @@
 
 **Chrome浏览器插件 ｜ 一款轻量级的 Chrome HTTP 请求监控与调试工具**
 
-**A lightweight Chrome HTTP request monitoring and debugging tool**
+**Chrome Extensions ｜ A lightweight Chrome HTTP request monitoring and debugging tool**
 
 [简体中文](#简体中文) | [English](#english)
 
