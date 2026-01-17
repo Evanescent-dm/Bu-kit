@@ -1,0 +1,10 @@
+{
+  "extName": {
+    "message": "Bu-kit",
+    "description": "Extension name"
+  },
+  "extDescription": {
+    "message": "Burp Suite-like HTTP request monitoring tool using DevTools Protocol to capture complete request/response",
+    "description": "Extension description"
+  }
+}

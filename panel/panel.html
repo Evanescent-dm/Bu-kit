@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+<head>
+  
+  <meta charset="UTF-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Bu-kit - HTTP History</title>
+  
+  <link rel="stylesheet" href="panel.css">
+</head>
+<body>
+  
+  <div class="container">
+
+    <div class="main-nav">
+      
+      <button class="main-nav-btn active" data-page="history" id="navHistory">
+        <span class="nav-icon">📝</span>
+        <span class="nav-text">HTTP History</span>
+      </button>
+      
+      <button class="main-nav-btn" data-page="repeater" id="navRepeater">
+        <span class="nav-icon">🔁</span>
+        <span class="nav-text">Repeater</span>
+        
+        <span class="repeater-count" id="repeaterCount">0</span>
+      </button>
+    </div>
+
+    <div class="page-container active" id="pageHistory">
+
+    <div class="toolbar">
+      
+      <div class="toolbar-left">
+        
+        <button id="captureBtn" class="btn btn-primary" title="开始捕获网络请求">
+          
+          <span class="btn-icon">●</span>
+          
+          <span class="btn-text">开始捕获</span>
+        </button>
+
+        <button id="clearBtn" class="btn btn-secondary" title="清除所有请求">
+          
+          <span class="btn-icon">🗑️</span>
+          
+          <span class="btn-text">清除</span>
+        </button>
+      </div>
+
+      <div class="toolbar-center">
+        
+        <div class="search-box">
+          
+          <span class="search-icon">🔍</span>
+          
+          <input 
+            type="text" 
+            id="searchInput" 
+            class="search-input" 
+            placeholder="搜索 URL、方法、状态码..."
+          >
+          
+          <button id="clearSearchBtn" class="clear-search-btn" title="清除搜索">×</button>
+        </div>
+
+        <select id="typeFilter" class="filter-select" title="按资源类型过滤">
+          
+          <option value="">全部类型</option>
+          
+          <option value="XHR">XHR</option>
+          <option value="Fetch">Fetch</option>
+          
+          <option value="Document">Document</option>
+          
+          <option value="Script">Script</option>
+          
+          <option value="Stylesheet">Stylesheet</option>
+          
+          <option value="Image">Image</option>
+          
+          <option value="Other">Other</option>
+        </select>
+
+        <select id="methodFilter" class="filter-select" title="按请求方法过滤">
+          
+          <option value="">全部方法</option>
+          
+          <option value="GET">GET</option>
+          
+          <option value="POST">POST</option>
+          
+          <option value="PUT">PUT</option>
+          
+          <option value="DELETE">DELETE</option>
+          
+          <option value="PATCH">PATCH</option>
+          
+          <option value="OPTIONS">OPTIONS</option>
+        </select>
+
+        <select id="hostFilter" class="filter-select" title="按域名过滤">
+          
+          <option value="">全部域名</option>
+          
+        </select>
+      </div>
+
+      <div class="toolbar-right">
+        
+        <span id="requestCount" class="request-count">0 个请求</span>
+        
+        <span id="captureStatus" class="capture-status status-stopped">
+          
+          <span class="status-dot"></span>
+          
+          <span class="status-text">未捕获</span>
+        </span>
+      </div>
+    </div>
+
+    <div class="main-content">
+
+      <div class="request-list-panel">
+        
+        <div class="request-list-header">
+          
+          <div class="col col-id sortable" id="sortById" title="点击排序">
+            <span class="sort-text">#</span>
+            <span class="sort-icon" id="sortIcon">▼</span>
+          </div>
+          
+          <div class="col col-method">方法</div>
+          
+          <div class="col col-status">状态</div>
+          
+          <div class="col col-host">Host</div>
+          
+          <div class="col col-url">URL</div>
+          
+          <div class="col col-type">类型</div>
+          
+          <div class="col col-size">大小</div>
+          
+          <div class="col col-time">时间</div>
+          
+          <div class="col col-actions"></div>
+        </div>
+
+        <div id="requestList" class="request-list">
+          
+          <div class="empty-state" id="emptyState">
+            
+            <div class="empty-icon">📡</div>
+            
+            <div class="empty-title">暂无请求</div>
+            
+            <div class="empty-desc">点击"开始捕获"按钮开始监控网络请求</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="request-detail-panel" id="detailPanel">
+        
+        <div class="detail-header">
+          
+          <h3 class="detail-title">请求详情</h3>
+          
+          <button id="closeDetailBtn" class="close-btn" title="关闭详情">×</button>
+        </div>
+
+        <div class="detail-tabs">
+          
+          <button class="tab-btn active" data-tab="headers">Headers</button>
+          
+          <button class="tab-btn" data-tab="request">Request</button>
+          
+          <button class="tab-btn" data-tab="response">Response</button>
+          
+          <button class="tab-btn" data-tab="preview">Preview</button>
+        </div>
+
+        <div class="detail-content">
+
+          <div class="tab-content active" id="tab-headers">
+            
+            <div class="section">
+              
+              <h4 class="section-title">General</h4>
+              
+              <div id="generalInfo" class="info-list">
+                
+              </div>
+            </div>
+
+            <div class="section">
+              
+              <h4 class="section-title">Response Headers</h4>
+              
+              <div id="responseHeaders" class="headers-list">
+                
+              </div>
+            </div>
+
+            <div class="section">
+              
+              <h4 class="section-title">Request Headers</h4>
+              
+              <div id="requestHeaders" class="headers-list">
+                
+              </div>
+            </div>
+          </div>
+
+          <div class="tab-content" id="tab-request">
+            
+            <div class="section">
+              
+              <h4 class="section-title">Request Body</h4>
+              
+              <pre id="requestBody" class="code-block">
+                
+              </pre>
+            </div>
+          </div>
+
+          <div class="tab-content" id="tab-response">
+            
+            <div class="section">
+              
+              <h4 class="section-title">Response Body</h4>
+              
+              <pre id="responseBody" class="code-block">
+                
+              </pre>
+            </div>
+          </div>
+
+          <div class="tab-content" id="tab-preview">
+            
+            <div class="section">
+              
+              <h4 class="section-title">Preview</h4>
+              
+              <div id="previewContent" class="preview-area">
+                
+              </div>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+      
+    </div>
+    
+    </div>
+
+    <div class="page-container" id="pageRepeater">
+
+      <div class="repeater-toolbar">
+        
+        <div class="repeater-tabs" id="repeaterTabs">
+          
+        </div>
+        
+        <button class="repeater-add-btn" id="addRepeaterTab" title="新建请求">
+          <span>+</span>
+        </button>
+      </div>
+
+      <div class="repeater-content" id="repeaterContent">
+
+        <div class="repeater-empty" id="repeaterEmpty">
+          <div class="empty-icon">🔁</div>
+          <div class="empty-title">暂无 Repeater 标签页</div>
+          <div class="empty-desc">点击 HTTP History 中请求行的 ↪ 图标发送到 Repeater</div>
+        </div>
+
+        <div class="repeater-tab-contents" id="repeaterTabContents">
+          
+        </div>
+        
+      </div>
+      
+    </div>
+    
+  </div>
+
+  <script src="panel.js"></script>
+</body>
+</html>

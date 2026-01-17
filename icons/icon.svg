@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+  <!-- 背景圆形 -->
+  <circle cx="64" cy="64" r="60" fill="#1a73e8"/>
+  
+  <!-- 网络/信号图标 -->
+  <g fill="white">
+    <!-- 中心圆点 -->
+    <circle cx="64" cy="64" r="8"/>
+    
+    <!-- 第一层弧线 -->
+    <path d="M64 40 A24 24 0 0 1 88 64" fill="none" stroke="white" stroke-width="6" stroke-linecap="round"/>
+    <path d="M64 88 A24 24 0 0 1 40 64" fill="none" stroke="white" stroke-width="6" stroke-linecap="round"/>
+    
+    <!-- 第二层弧线 -->
+    <path d="M64 28 A36 36 0 0 1 100 64" fill="none" stroke="white" stroke-width="6" stroke-linecap="round"/>
+    <path d="M64 100 A36 36 0 0 1 28 64" fill="none" stroke="white" stroke-width="6" stroke-linecap="round"/>
+  </g>
+  
+  <!-- 锁图标 -->
+  <g transform="translate(80, 80)">
+    <rect x="0" y="8" width="24" height="18" rx="3" fill="#ffc107"/>
+    <path d="M4 8 V4 A8 8 0 0 1 20 4 V8" fill="none" stroke="#ffc107" stroke-width="4"/>
+    <circle cx="12" cy="17" r="3" fill="#1a73e8"/>
+  </g>
+</svg>

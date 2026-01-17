@@ -1,0 +1,10 @@
+{
+  "extName": {
+    "message": "Bu-kit",
+    "description": "扩展名称"
+  },
+  "extDescription": {
+    "message": "类似 Burp Suite 的 HTTP 请求监控工具，使用 DevTools Protocol 捕获完整请求/响应",
+    "description": "扩展描述"
+  }
+}
