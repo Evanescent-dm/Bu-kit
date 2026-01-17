@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Bu-kit</title>
+
+  <style>
+
+    * {
+      /* 使用 border-box 盒模型 */
+      box-sizing: border-box;
+      /* 重置外边距 */
+      margin: 0;
+      /* 重置内边距 */
+      padding: 0;
+    }
+    
+    body {
+      /* 固定宽度 */
+      width: 320px;
+      /* 最小高度 */
+      min-height: 200px;
+      /* 字体设置 */
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      /* 字体大小 */
+      font-size: 14px;
+      /* 文字颜色 */
+      color: #333;
+      /* 背景色 */
+      background-color: #f5f5f5;
+    }
+    
+    .header {
+      /* 渐变背景 */
+      background: linear-gradient(135deg, #1a73e8 0%, #0d47a1 100%);
+      /* 文字颜色 */
+      color: white;
+      /* 内边距 */
+      padding: 20px;
+      /* 居中对齐 */
+      text-align: center;
+    }
+    
+    .header h1 {
+      /* 字体大小 */
+      font-size: 20px;
+      /* 字体粗细 */
+      font-weight: 600;
+      /* 下边距 */
+      margin-bottom: 5px;
+    }
+    
+    .header p {
+      /* 字体大小 */
+      font-size: 12px;
+      /* 透明度 */
+      opacity: 0.9;
+    }
+    
+    .container {
+      /* 内边距 */
+      padding: 15px;
+      /* 背景色 */
+      background-color: white;
+    }
+
+    .status-card {
+      /* 背景色 */
+      background-color: #f9f9f9;
+      /* 圆角 */
+      border-radius: 8px;
+      /* 内边距 */
+      padding: 15px;
+      /* 下边距 */
+      margin-bottom: 15px;
+      /* 边框 */
+      border: 1px solid #e0e0e0;
+    }
+    
+    .status-row {
+      /* 使用 Flexbox */
+      display: flex;
+      /* 两端对齐 */
+      justify-content: space-between;
+      /* 垂直居中 */
+      align-items: center;
+      /* 内边距 */
+      padding: 8px 0;
+      /* 底部边框 */
+      border-bottom: 1px solid #e8e8e8;
+    }
+    
+    .status-row:last-child {
+      /* 最后一行无边框 */
+      border-bottom: none;
+    }
+    
+    .status-label {
+      /* 文字颜色 */
+      color: #666;
+      /* 字体大小 */
+      font-size: 13px;
+    }
+    
+    .status-value {
+      /* 字体粗细 */
+      font-weight: 600;
+      /* 字体大小 */
+      font-size: 13px;
+    }
+    
+    .status-value.capturing {
+      /* 捕获中颜色（绿色） */
+      color: #28a745;
+    }
+    
+    .status-value.stopped {
+      /* 停止颜色（灰色） */
+      color: #6c757d;
+    }
+    
+    .btn {
+      /* 宽度 */
+      width: 100%;
+      /* 内边距 */
+      padding: 12px 16px;
+      /* 无边框 */
+      border: none;
+      /* 圆角 */
+      border-radius: 6px;
+      /* 字体大小 */
+      font-size: 14px;
+      /* 字体粗细 */
+      font-weight: 500;
+      /* 鼠标指针 */
+      cursor: pointer;
+      /* 过渡动画 */
+      transition: all 0.3s;
+      /* 下边距 */
+      margin-bottom: 10px;
+    }
+    
+    .btn-primary {
+      /* 背景色 */
+      background-color: #1a73e8;
+      /* 文字颜色 */
+      color: white;
+    }
+    
+    .btn-primary:hover {
+      /* 悬停背景色 */
+      background-color: #1557b0;
+      /* 上移效果 */
+      transform: translateY(-1px);
+      /* 阴影 */
+      box-shadow: 0 4px 12px rgba(26, 115, 232, 0.4);
+    }
+    
+    .btn-primary.capturing {
+      /* 捕获中背景色（红色） */
+      background-color: #dc3545;
+    }
+    
+    .btn-primary.capturing:hover {
+      /* 捕获中悬停背景色 */
+      background-color: #c82333;
+      /* 阴影 */
+      box-shadow: 0 4px 12px rgba(220, 53, 69, 0.4);
+    }
+    
+    .btn-secondary {
+      /* 背景色 */
+      background-color: #f0f0f0;
+      /* 文字颜色 */
+      color: #666;
+    }
+    
+    .btn-secondary:hover {
+      /* 悬停背景色 */
+      background-color: #e0e0e0;
+    }
+    
+    .tip {
+      /* 背景色 */
+      background-color: #e3f2fd;
+      /* 圆角 */
+      border-radius: 6px;
+      /* 内边距 */
+      padding: 12px;
+      /* 字体大小 */
+      font-size: 12px;
+      /* 文字颜色 */
+      color: #1565c0;
+      /* 行高 */
+      line-height: 1.5;
+    }
+    
+    .tip-icon {
+      /* 右边距 */
+      margin-right: 6px;
+    }
+    
+
+    .footer {
+      /* 内边距 */
+      padding: 12px 15px;
+      /* 居中对齐 */
+      text-align: center;
+      /* 背景色 */
+      background-color: #f5f5f5;
+      /* 顶部边框 */
+      border-top: 1px solid #e0e0e0;
+    }
+    
+    .footer a {
+      /* 链接颜色 */
+      color: #1a73e8;
+      /* 无下划线 */
+      text-decoration: none;
+      /* 字体大小 */
+      font-size: 13px;
+    }
+    
+    .footer a:hover {
+      /* 悬停下划线 */
+      text-decoration: underline;
+    }
+    
+
+    .loading {
+      /* 居中对齐 */
+      text-align: center;
+      /* 内边距 */
+      padding: 20px;
+      /* 文字颜色 */
+      color: #999;
+    }
+  </style>
+</head>
+<body>
+  <!-- 头部区域 -->
+  <div class="header">
+    <!-- 标题 -->
+    <h1>🔒 Bu-kit</h1>
+    <!-- 副标题 -->
+    <p>HTTP 请求监控工具</p>
+  </div>
+  
+  <!-- 主内容区域 -->
+  <div class="container">
+    <!-- 状态卡片 -->
+    <div class="status-card">
+      <!-- 捕获状态行 -->
+      <div class="status-row">
+        <!-- 标签 -->
+        <span class="status-label">捕获状态</span>
+        <!-- 值 -->
+        <span id="captureStatus" class="status-value stopped">未捕获</span>
+      </div>
+      <!-- 请求数量行 -->
+      <div class="status-row">
+        <!-- 标签 -->
+        <span class="status-label">已捕获请求</span>
+        <!-- 值 -->
+        <span id="requestCount" class="status-value">0</span>
+      </div>
+      <!-- 当前标签页行 -->
+      <div class="status-row">
+        <!-- 标签 -->
+        <span class="status-label">当前标签页</span>
+        <!-- 值 -->
+        <span id="tabInfo" class="status-value" style="max-width: 150px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">-</span>
+      </div>
+    </div>
+    
+    <!-- 捕获按钮 -->
+    <button id="captureBtn" class="btn btn-primary">
+      ● 开始捕获
+    </button>
+    
+    <!-- 打开面板按钮 -->
+    <button id="openPanelBtn" class="btn btn-secondary">
+      📊 打开 DevTools 面板
+    </button>
+    
+    <!-- 提示信息 -->
+    <div class="tip">
+      <span class="tip-icon">💡</span>
+      <span>提示：按 F12 打开开发者工具，切换到 "Bu-kit" 标签页查看详细请求信息。</span>
+    </div>
+  </div>
+  
+  <!-- 底部区域 -->
+  <div class="footer">
+    <!-- 版本信息 -->
+    <span id="version">v1.0.0</span>
+  </div>
+  
+  <!-- 加载脚本 -->
+  <script src="popup.js"></script>
+</body>
+</html>
